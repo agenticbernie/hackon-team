@@ -1,0 +1,107 @@
+---
+const stats = [
+  { value: '12', label: 'Hackathons entered' },
+  { value: '7', label: 'Finals reached' },
+  { value: '4', label: 'First-place wins' },
+];
+---
+
+<section class="hero">
+  <div class="container hero-inner">
+    <span class="eyebrow">Hackathon team</span>
+    <h1>
+      We build, we ship,<br />
+      <span class="grad">we win the weekend.</span>
+    </h1>
+    <p class="lede muted">
+      HackOn is a small crew of designers and engineers who turn an idea into a
+      working product in 48 hours — then tell the story well enough to take it
+      home.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#join">Join the team</a>
+      <a class="btn btn-ghost" href="#work">See what we do</a>
+    </div>
+
+    <dl class="stats">
+      {stats.map((stat) => (
+        <div class="stat">
+          <dt>{stat.value}</dt>
+          <dd class="muted">{stat.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding: 120px 0 96px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: -30% 20% auto -20%;
+    height: 620px;
+    background: radial-gradient(
+      closest-side,
+      color-mix(in srgb, var(--accent) 42%, transparent),
+      transparent
+    );
+    filter: blur(20px);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 6vw, 4.1rem);
+    max-width: 16ch;
+  }
+
+  .grad {
+    background: linear-gradient(120deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .lede {
+    font-size: 1.12rem;
+    max-width: 56ch;
+    margin-top: 8px;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 28px 0 56px;
+  }
+
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 56px;
+    margin: 0;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat dt {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .stat dd {
+    margin: 0;
+    font-size: 0.92rem;
+  }
+</style>

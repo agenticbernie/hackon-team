@@ -1,0 +1,53 @@
+<section class="cta-wrap" id="join">
+  <div class="container">
+    <div class="cta">
+      <div>
+        <h2>Got a weekend and a good idea?</h2>
+        <p class="cta-lede">
+          We are always looking for one more builder. Tell us what you like to
+          make and we will find you a spot on the next team.
+        </p>
+      </div>
+      <a class="btn btn-primary" href="mailto:team@hackon.dev">team@hackon.dev</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-wrap {
+    padding: 24px 0 96px;
+  }
+
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    padding: 48px;
+    border-radius: 22px;
+    border: 1px solid var(--border);
+    background: linear-gradient(
+      120deg,
+      color-mix(in srgb, var(--accent) 22%, var(--surface)),
+      color-mix(in srgb, var(--accent-2) 18%, var(--surface))
+    );
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 8px;
+  }
+
+  .cta-lede {
+    margin: 0;
+    max-width: 46ch;
+    color: var(--muted);
+  }
+
+  @media (max-width: 640px) {
+    .cta {
+      padding: 32px 24px;
+    }
+  }
+</style>

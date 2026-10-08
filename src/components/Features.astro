@@ -1,0 +1,69 @@
+---
+const items = [
+  {
+    title: 'Ship in 48 hours',
+    body: 'One repo, one branch, one demo. We scope hard on Friday and have something real to show by Sunday morning.',
+  },
+  {
+    title: 'Design that reads',
+    body: 'Clear typography, honest copy and a focus on the one thing the judge should remember about the product.',
+  },
+  {
+    title: 'Demo like it matters',
+    body: 'A three-minute story: the problem, the build, the result. No slides that need a narrator.',
+  },
+];
+---
+
+<section class="section" id="work">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">What we do</span>
+      <h2>Three things we refuse to compromise on</h2>
+      <p class="muted">
+        Every hackathon we enter runs the same playbook — and it is the reason we
+        keep reaching the finals.
+      </p>
+    </div>
+
+    <div class="grid">
+      {items.map((item, i) => (
+        <article class="card feature">
+          <span class="num">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{item.title}</h3>
+          <p class="muted">{item.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .feature {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .num {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+  }
+
+  .feature h3 {
+    font-size: 1.18rem;
+    margin: 6px 0 4px;
+  }
+
+  .feature p:last-child {
+    margin-bottom: 0;
+  }
+</style>
