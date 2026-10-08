@@ -1,0 +1,62 @@
+---
+interface Props {
+  title: string;
+  project?: string;
+}
+
+const { title, project } = Astro.props;
+---
+
+<li class="achievement" data-reveal>
+  <span class="mark" aria-hidden="true"></span>
+  <div class="text">
+    <p class="title">{title}</p>
+    {project && <p class="project muted">{project}</p>}
+  </div>
+</li>
+
+<style>
+  .achievement {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 22px 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, var(--surface), var(--bg-soft));
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .achievement:hover {
+    border-color: rgba(0, 168, 255, 0.45);
+    transform: translateX(2px);
+  }
+
+  .mark {
+    flex: none;
+    width: 3px;
+    align-self: stretch;
+    min-height: 26px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, var(--warm), var(--accent));
+  }
+
+  .title {
+    margin: 0;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .project {
+    margin: 4px 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .achievement:hover {
+      transform: none;
+    }
+  }
+</style>

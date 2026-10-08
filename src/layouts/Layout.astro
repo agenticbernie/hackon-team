@@ -1,0 +1,120 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'HackOn Team — Ignite. Work. Ship. Repeat.',
+  description = 'HackOn Team is an independent builder organization exploring Agentic AI, Web3, and emerging infrastructure.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/brand/logo-mark.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="HackOn Team" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/brand/logo-full.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/brand/logo-full.png" />
+
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+  </head>
+  <body>
+    <slot />
+
+    <script is:inline>
+      (function () {
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var reveals = Array.prototype.slice.call(
+          document.querySelectorAll('[data-reveal]')
+        );
+
+        if (reduce || !('IntersectionObserver' in window)) {
+          reveals.forEach(function (el) {
+            el.classList.add('is-visible');
+          });
+        } else {
+          var revealObserver = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
+              });
+            },
+            { rootMargin: '0px 0px -8% 0px', threshold: 0.1 }
+          );
+          reveals.forEach(function (el) {
+            revealObserver.observe(el);
+          });
+        }
+
+        // Mobile navigation
+        var toggle = document.querySelector('[data-nav-toggle]');
+        var panel = document.querySelector('[data-nav-panel]');
+        if (toggle && panel) {
+          toggle.addEventListener('click', function () {
+            var open = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', String(!open));
+            panel.classList.toggle('is-open', !open);
+          });
+          panel.addEventListener('click', function (event) {
+            if (event.target.closest('a')) {
+              toggle.setAttribute('aria-expanded', 'false');
+              panel.classList.remove('is-open');
+            }
+          });
+        }
+
+        // Active navigation state
+        var links = Array.prototype.slice.call(
+          document.querySelectorAll('[data-nav-link]')
+        );
+        var ids = links.map(function (link) {
+          return (link.getAttribute('href') || '').replace('#', '');
+        });
+        var sections = Array.prototype.slice
+          .call(document.querySelectorAll('main section[id]'))
+          .filter(function (section) {
+            return ids.indexOf(section.id) !== -1;
+          });
+
+        if (sections.length && links.length && 'IntersectionObserver' in window) {
+          var navObserver = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                links.forEach(function (link) {
+                  link.classList.toggle(
+                    'is-active',
+                    link.getAttribute('href') === '#' + entry.target.id
+                  );
+                });
+              });
+            },
+            { rootMargin: '-45% 0px -50% 0px' }
+          );
+          sections.forEach(function (section) {
+            navObserver.observe(section);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

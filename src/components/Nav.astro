@@ -1,0 +1,224 @@
+---
+const links = [
+  { href: '#home', label: 'Home' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#work', label: 'Work' },
+  { href: '#ecosystem', label: 'Ecosystem' },
+  { href: '#team', label: 'Team' },
+  { href: '#about', label: 'About' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<a class="skip-link" href="#home">Skip to content</a>
+
+<header class="nav-wrap">
+  <div class="container nav-inner">
+    <a class="brand" href="#home" aria-label="HackOn Team — home">
+      <img src="/brand/logo-mark.png" alt="" width="30" height="30" />
+      <span class="brand-text">HackOn<span class="brand-thin">&nbsp;Team</span></span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      {links.map((link) => <a href={link.href} data-nav-link>{link.label}</a>)}
+    </nav>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      data-nav-toggle
+    >
+      <span class="sr-only">Toggle navigation</span>
+      <span class="bars" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <div class="nav-panel" id="mobile-nav" data-nav-panel>
+    <nav class="container panel-links" aria-label="Mobile">
+      {links.map((link) => <a href={link.href} data-nav-link>{link.label}</a>)}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    padding: 10px 16px;
+    background: var(--accent);
+    color: #031018;
+    border-radius: 0 0 8px 0;
+    font-weight: 600;
+  }
+
+  .skip-link:focus {
+    left: 0;
+  }
+
+  .nav-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(14px);
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    height: 70px;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    font-weight: 680;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  .brand img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .brand-text {
+    font-size: 1.02rem;
+  }
+
+  .brand-thin {
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 26px;
+    margin-left: auto;
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+
+  .nav-links a {
+    position: relative;
+    padding: 6px 0;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.is-active {
+    color: var(--text);
+  }
+
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  .nav-links a:hover::after,
+  .nav-links a.is-active::after {
+    transform: scaleX(1);
+  }
+
+  .nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .bars,
+  .bars::before,
+  .bars::after {
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: var(--text);
+  }
+
+  .bars {
+    position: relative;
+  }
+
+  .bars::before,
+  .bars::after {
+    content: "";
+    position: absolute;
+    left: 0;
+  }
+
+  .bars::before {
+    top: -6px;
+  }
+
+  .bars::after {
+    top: 6px;
+  }
+
+  .nav-panel {
+    display: none;
+    border-top: 1px solid var(--border);
+    background: var(--bg-soft);
+  }
+
+  .nav-panel.is-open {
+    display: block;
+  }
+
+  .panel-links {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0 16px;
+  }
+
+  .panel-links a {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .panel-links a:last-child {
+    border-bottom: 0;
+  }
+
+  .panel-links a.is-active {
+    color: var(--accent-2);
+  }
+
+  @media (max-width: 900px) {
+    .nav-links {
+      display: none;
+    }
+
+    .nav-toggle {
+      display: inline-flex;
+    }
+  }
+
+  @media (min-width: 901px) {
+    .nav-panel {
+      display: none !important;
+    }
+  }
+</style>

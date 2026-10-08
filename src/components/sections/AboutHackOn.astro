@@ -1,0 +1,113 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+
+const principles = [
+  {
+    title: 'Build Products',
+    body: 'Turn ideas into real, testable products.',
+  },
+  {
+    title: 'Explore Technology',
+    body: 'Experiment with emerging technical paradigms.',
+  },
+  {
+    title: 'Grow Builders',
+    body: 'Create environments where people learn by building and shipping.',
+  },
+];
+---
+
+<section class="section" id="about">
+  <div class="container">
+    <SectionHeader eyebrow="About" title="About HackOn" />
+
+    <div class="about">
+      <div class="copy" data-reveal>
+        <p class="lead">HackOn grew from builders who wanted to build things themselves.</p>
+        <p class="muted">
+          Through hackathons, product experiments, technical communities, and
+          build-in-public, we evolved into an independent builder organization
+          focused on turning emerging ideas into working systems.
+        </p>
+      </div>
+
+      <ul class="principles">
+        {
+          principles.map((principle) => (
+            <li class="principle card" data-reveal>
+              <h3>{principle.title}</h3>
+              <p class="muted">{principle.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <p class="closing" data-reveal>We are still early. That's intentional.</p>
+  </div>
+</section>
+
+<style>
+  .about {
+    display: grid;
+    gap: 40px;
+  }
+
+  @media (min-width: 900px) {
+    .about {
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+  }
+
+  .lead {
+    font-size: clamp(1.2rem, 2.6vw, 1.5rem);
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+
+  .copy p:last-child {
+    margin: 0;
+  }
+
+  .principles {
+    display: grid;
+    gap: 16px;
+  }
+
+  .principle {
+    padding: 22px 24px;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .principle:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+  }
+
+  .principle h3 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+  }
+
+  .principle p {
+    margin: 0;
+    font-size: 0.93rem;
+  }
+
+  .closing {
+    margin: 56px 0 0;
+    padding-top: 34px;
+    border-top: 1px solid var(--border);
+    font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+    font-weight: 620;
+    letter-spacing: -0.02em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .principle:hover {
+      transform: none;
+    }
+  }
+</style>

@@ -1,0 +1,73 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+
+const focus = [
+  'Agentic Systems',
+  'Evidence-Driven AI',
+  'Autonomous Financial Infrastructure',
+  'AI-Native Products',
+];
+---
+
+<section class="section" id="focus">
+  <div class="container">
+    <SectionHeader eyebrow="Direction" title="Current Focus" />
+
+    <ul class="focus-grid">
+      {
+        focus.map((item) => (
+          <li class="focus-item" data-reveal>
+            <span class="dot" aria-hidden="true"></span>
+            {item}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .focus-grid {
+    display: grid;
+    gap: 14px;
+  }
+
+  @media (min-width: 700px) {
+    .focus-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .focus-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 24px 26px;
+    font-size: 1.08rem;
+    font-weight: 560;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, var(--surface), var(--bg-soft));
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .focus-item:hover {
+    border-color: rgba(0, 168, 255, 0.45);
+    transform: translateY(-2px);
+  }
+
+  .dot {
+    flex: none;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--warm), var(--accent));
+    box-shadow: 0 0 0 5px rgba(0, 168, 255, 0.1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .focus-item:hover {
+      transform: none;
+    }
+  }
+</style>

@@ -1,0 +1,39 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  center?: boolean;
+}
+
+const { eyebrow, title, intro, center = false } = Astro.props;
+---
+
+<div class:list={['section-header', { center }]} data-reveal>
+  {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+  <h2>{title}</h2>
+  {intro && <p class="intro muted">{intro}</p>}
+</div>
+
+<style>
+  .section-header {
+    max-width: 660px;
+    margin-bottom: 52px;
+  }
+
+  .section-header.center {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+  }
+
+  .intro {
+    font-size: 1.05rem;
+    margin-bottom: 0;
+  }
+</style>

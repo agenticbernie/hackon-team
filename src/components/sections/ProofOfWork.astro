@@ -1,0 +1,59 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import AchievementCard from '../AchievementCard.astro';
+
+const achievements = [
+  {
+    title: 'Top 5 Shortlist — Aviation Track, Agentic AI Build Week 2026',
+    project: 'AeroTwin AI',
+  },
+  { title: 'Runner-up — TLS Innovation 2025', project: 'Achievo' },
+  { title: 'Top 10 — Web3 & AI Ideathon 2025', project: 'Alt30' },
+  { title: 'Top 8 — Algorand Vietnam Hackathon 2024', project: 'NFTicket' },
+];
+---
+
+<section class="section" id="proof">
+  <div class="container">
+    <SectionHeader
+      eyebrow="Track record"
+      title="Proof of Work"
+      intro="We believe credibility comes from things we actually build, test, and ship."
+    />
+
+    <ol class="achievements">
+      {
+        achievements.map((achievement) => (
+          <AchievementCard
+            title={achievement.title}
+            project={achievement.project}
+          />
+        ))
+      }
+    </ol>
+
+    <p class="principle" data-reveal>Build → Test → Ship → Learn → Iterate</p>
+  </div>
+</section>
+
+<style>
+  .achievements {
+    display: grid;
+    gap: 14px;
+  }
+
+  @media (min-width: 860px) {
+    .achievements {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .principle {
+    margin: 34px 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    color: var(--accent-2);
+    text-align: center;
+  }
+</style>

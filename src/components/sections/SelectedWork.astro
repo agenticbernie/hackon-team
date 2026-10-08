@@ -1,0 +1,147 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+---
+
+<section class="section" id="work">
+  <div class="container">
+    <SectionHeader
+      eyebrow="Selected work"
+      title="Selected Work"
+      intro="Selected projects from our journey of experimenting, building, and shipping."
+    />
+
+    <article class="work card" data-reveal>
+      <div class="work-info">
+        <span class="badge">
+          Top 5 Shortlist — Aviation Track, Agentic AI Build Week 2026
+        </span>
+        <h3>AeroTwin AI</h3>
+        <p class="lede">Agentic AI for aviation.</p>
+        <p class="muted note">
+          A previous project built for Agentic AI Build Week 2026 and
+          shortlisted in the Aviation track.
+        </p>
+      </div>
+
+      <figure class="work-cert">
+        <img
+          src="/media/certificate.jpg"
+          alt="Certificate of Achievement awarded to HackOn Team for placing in the Top Five of the Aviation track at Agentic AI Build Week 2026."
+          width="1600"
+          height="1131"
+          loading="lazy"
+        />
+        <figcaption class="muted">
+          Certificate of Achievement — Top Five, Aviation track, Agentic AI Build
+          Week 2026.
+        </figcaption>
+      </figure>
+    </article>
+
+    <div class="demo" data-reveal>
+      <div class="demo-head">
+        <h4>AeroTwin AI — demo</h4>
+        <p class="muted">Recorded demo from Agentic AI Build Week 2026.</p>
+      </div>
+      <video
+        class="demo-video"
+        src="/media/aerotwin-demo.mp4"
+        controls
+        preload="metadata"
+        playsinline
+      ></video>
+    </div>
+  </div>
+</section>
+
+<style>
+  .work {
+    display: grid;
+    gap: 32px;
+    padding: 32px;
+  }
+
+  @media (min-width: 900px) {
+    .work {
+      grid-template-columns: 1fr 1.15fr;
+      align-items: center;
+      padding: 40px;
+    }
+  }
+
+  .badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--core);
+    background: rgba(255, 140, 0, 0.1);
+    border: 1px solid rgba(255, 140, 0, 0.35);
+    border-radius: 999px;
+    padding: 6px 13px;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+    margin-bottom: 6px;
+  }
+
+  .lede {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    margin-bottom: 14px;
+  }
+
+  .note {
+    margin: 0;
+    font-size: 0.93rem;
+  }
+
+  .work-cert {
+    margin: 0;
+  }
+
+  .work-cert img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .work-cert figcaption {
+    margin-top: 12px;
+    font-size: 0.82rem;
+  }
+
+  .demo {
+    margin-top: 24px;
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, var(--surface), var(--bg-soft));
+  }
+
+  .demo-head {
+    margin-bottom: 18px;
+  }
+
+  .demo-head h4 {
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+
+  .demo-head p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .demo-video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: #000;
+  }
+</style>

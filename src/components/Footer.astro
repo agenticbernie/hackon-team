@@ -1,0 +1,161 @@
+---
+const projects = ['Pact', 'SayStrike', 'AeroTwin AI'];
+const communities = ['HackerHome', 'Phú Nhuận Builder'];
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="#home" aria-label="HackOn Team — back to top">
+        <img src="/brand/logo-mark.png" alt="" width="26" height="26" />
+        <span>HackOn Team</span>
+      </a>
+      <p class="tagline">Ignite. Work. Ship. Repeat.</p>
+      <p class="muted small">Independent builder organization based in Vietnam.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Projects</h4>
+      <ul>
+        {projects.map((project) => <li>{project}</li>)}
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Communities</h4>
+      <ul>
+        {communities.map((community) => <li>{community}</li>)}
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:bernie@hackon.team">bernie@hackon.team</a></li>
+        <li>
+          <a
+            href="https://www.linkedin.com/in/bernieweb3"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            bernieweb3<span class="ext" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span class="muted small">© 2026 HackOn Team</span>
+    <a class="muted small top-link" href="#home">Back to top ↑</a>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    background: var(--bg-soft);
+    padding: 64px 0 28px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 44px;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 680;
+    font-size: 1.05rem;
+    margin-bottom: 14px;
+  }
+
+  .brand img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .tagline {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    color: var(--accent-2);
+    margin-bottom: 6px;
+  }
+
+  .small {
+    font-size: 0.85rem;
+  }
+
+  .footer-brand .small {
+    margin: 0;
+  }
+
+  .footer-col h4 {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .footer-col ul {
+    display: grid;
+    gap: 9px;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+  }
+
+  .footer-col a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    overflow-wrap: anywhere;
+  }
+
+  .footer-col a:hover {
+    color: var(--accent-2);
+  }
+
+  .ext {
+    font-size: 0.75rem;
+    color: var(--accent);
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .top-link:hover {
+    color: var(--accent-2);
+  }
+
+  @media (max-width: 860px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

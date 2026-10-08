@@ -1,0 +1,60 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import CTABlock from '../CTABlock.astro';
+
+const areas = [
+  'Agentic AI',
+  'Web3',
+  'Developer Infrastructure',
+  'AI-Native Products',
+  'Autonomous Systems',
+];
+---
+
+<section class="section" id="build">
+  <div class="container">
+    <SectionHeader
+      eyebrow="Work with us"
+      title="Build With Us"
+      intro="We are interested in people who enjoy exploring difficult problems, building prototypes, and shipping things into the real world."
+    />
+
+    <ul class="areas" data-reveal>
+      {areas.map((area) => <li class="chip">{area}</li>)}
+    </ul>
+
+    <p class="closing" data-reveal>
+      You don't need a perfect idea. You need the willingness to build.
+    </p>
+
+    <div class="cta-wrap">
+      <CTABlock
+        title="Want to build something with us?"
+        text="Collaborations, partnerships, projects, and new builders are all welcome."
+        ctaLabel="Get in touch"
+        ctaHref="#contact"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .areas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .closing {
+    font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    max-width: 46ch;
+    margin-bottom: 44px;
+  }
+
+  .cta-wrap {
+    margin-top: 8px;
+  }
+</style>

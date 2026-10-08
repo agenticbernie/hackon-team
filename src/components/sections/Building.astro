@@ -1,0 +1,89 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import ProjectCard from '../ProjectCard.astro';
+
+const pactFlow = [
+  'Agent Action',
+  'Evidence',
+  'Verification',
+  'Authorization',
+  'Execution',
+];
+
+const pactTopics = [
+  'Agentic AI',
+  'Programmable money',
+  'Stablecoins',
+  'Web3 infrastructure',
+  'Evidence-driven agent systems',
+];
+
+const saystrikeTopics = [
+  'AI',
+  'Real-time interaction',
+  'Gamification',
+  'AI-native products',
+];
+---
+
+<section class="section" id="projects">
+  <div class="container">
+    <SectionHeader
+      eyebrow="Projects"
+      title="What We're Building"
+      intro="We turn emerging technical ideas into working products, experiments, and systems."
+    />
+
+    <div class="projects">
+      <ProjectCard
+        title="Pact"
+        description="Evidence-driven autonomous payments for AI agents."
+        supporting="Pact explores how AI agents can safely execute financial actions by requiring verifiable evidence before payment authorization."
+        topics={pactTopics}
+        status="Active development"
+        flow={pactFlow}
+      >
+        <video
+          slot="media"
+          src="/media/pact-demo.webm"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-label="Pact demo — evidence-driven autonomous payments for AI agents"
+        ></video>
+      </ProjectCard>
+
+      <ProjectCard
+        title="SayStrike"
+        description="Interactive AI-powered speaking practice."
+        supporting="SayStrike explores AI-powered real-time interaction and gamified speaking practice."
+        topics={saystrikeTopics}
+        status="Active development"
+      >
+        <img
+          slot="media"
+          src="/media/saystrike.png"
+          alt="SayStrike project interface"
+          width="1080"
+          height="1080"
+          loading="lazy"
+        />
+      </ProjectCard>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects {
+    display: grid;
+    gap: 24px;
+  }
+
+  @media (min-width: 900px) {
+    .projects {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
