@@ -1,0 +1,138 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  supporting?: string;
+  topics?: string[];
+  status?: string;
+  flow?: string[];
+}
+
+const { title, description, supporting, topics = [], status, flow } = Astro.props;
+---
+
+<article class="project card" data-reveal>
+  <div class="media-frame">
+    <slot name="media" />
+  </div>
+
+  <div class="body">
+    <div class="head">
+      <h3>{title}</h3>
+      {status && <span class="status">{status}</span>}
+    </div>
+
+    <p class="desc">{description}</p>
+
+    {flow && flow.length > 0 && (
+      <ol class="flow">
+        {flow.map((step) => (
+          <li>
+            <span class="step">{step}</span>
+          </li>
+        ))}
+      </ol>
+    )}
+
+    {supporting && <p class="supporting muted">{supporting}</p>}
+
+    {topics.length > 0 && (
+      <ul class="topics">
+        {topics.map((topic) => <li class="chip">{topic}</li>)}
+      </ul>
+    )}
+  </div>
+</article>
+
+<style>
+  .project {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.25s ease, border-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .project:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-strong);
+    box-shadow: var(--shadow);
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 26px 26px 28px;
+  }
+
+  .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    font-size: 1.55rem;
+    margin: 0;
+  }
+
+  .desc {
+    color: var(--text-dim);
+    font-size: 1.02rem;
+    margin-bottom: 18px;
+  }
+
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    margin: 0 0 18px;
+  }
+
+  .flow li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .flow li + li::before {
+    content: "→";
+    font-family: var(--font-mono);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  .step {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    background: rgba(0, 168, 255, 0.07);
+    border: 1px solid rgba(0, 168, 255, 0.25);
+    border-radius: 8px;
+    padding: 7px 11px;
+  }
+
+  .supporting {
+    font-size: 0.94rem;
+    margin-bottom: 20px;
+  }
+
+  .topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project:hover {
+      transform: none;
+    }
+  }
+</style>

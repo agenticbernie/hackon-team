@@ -1,0 +1,106 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  description: string;
+  image: string;
+  linkedin?: string;
+}
+
+const { name, role, description, image, linkedin } = Astro.props;
+---
+
+<article class="team-card card" data-reveal>
+  <div class="photo">
+    <img src={image} alt={name} width="1000" height="1000" loading="lazy" />
+  </div>
+
+  <div class="body">
+    <h3>
+      {
+        linkedin ? (
+          <a href={linkedin} target="_blank" rel="noopener noreferrer">
+            {name}
+            <span class="ext" aria-hidden="true">↗</span>
+          </a>
+        ) : (
+          name
+        )
+      }
+    </h3>
+
+    <p class="role">{role}</p>
+    <p class="desc muted">{description}</p>
+  </div>
+</article>
+
+<style>
+  .team-card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .team-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-3px);
+  }
+
+  .photo {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-soft);
+  }
+
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .body {
+    padding: 22px 24px 26px;
+  }
+
+  h3 {
+    font-size: 1.18rem;
+    margin-bottom: 4px;
+  }
+
+  h3 a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  h3 a:hover {
+    color: var(--accent-2);
+  }
+
+  .ext {
+    font-size: 0.8rem;
+    color: var(--accent);
+  }
+
+  .role {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    margin-bottom: 12px;
+  }
+
+  .desc {
+    font-size: 0.93rem;
+    margin: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .team-card:hover {
+      transform: none;
+    }
+  }
+</style>

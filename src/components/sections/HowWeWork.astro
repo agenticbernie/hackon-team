@@ -1,0 +1,87 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+
+const steps = ['Explore', 'Prototype', 'Ship', 'Learn', 'Iterate'];
+---
+
+<section class="section" id="how">
+  <div class="container">
+    <SectionHeader eyebrow="Process" title="How We Work" />
+
+    <ol class="process" data-reveal>
+      {
+        steps.map((step, index) => (
+          <li class="step">
+            <span class="num">{String(index + 1).padStart(2, '0')}</span>
+            <span class="label">{step}</span>
+          </li>
+        ))
+      }
+    </ol>
+
+    <p class="explain muted" data-reveal>
+      We prefer real experiments over speculation. Ideas become prototypes,
+      prototypes become shipped systems, and shipped systems generate the
+      feedback for the next iteration.
+    </p>
+  </div>
+</section>
+
+<style>
+  .process {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+
+  @media (min-width: 860px) {
+    .process {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+  }
+
+  .step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, var(--surface), var(--bg-soft));
+  }
+
+  .num {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+  }
+
+  .label {
+    font-weight: 620;
+    font-size: 1.05rem;
+  }
+
+  /* Connector arrows between steps on wider screens. */
+  @media (min-width: 860px) {
+    .step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      top: 50%;
+      right: -12px;
+      transform: translate(50%, -50%);
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      z-index: 1;
+    }
+  }
+
+  .explain {
+    max-width: 72ch;
+    margin: 0;
+    font-size: 1rem;
+  }
+</style>

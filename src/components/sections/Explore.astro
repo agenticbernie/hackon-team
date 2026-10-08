@@ -1,0 +1,81 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+
+const areas = [
+  {
+    title: 'Agentic AI',
+    body: 'Systems where AI agents can reason, act, and operate within real-world constraints.',
+  },
+  {
+    title: 'Web3',
+    body: 'Programmable assets, decentralized infrastructure, and new coordination mechanisms.',
+  },
+  {
+    title: 'Autonomous Infrastructure',
+    body: 'Infrastructure designed around machine-driven workflows and autonomous systems.',
+  },
+  {
+    title: 'AI-Native Products',
+    body: 'Products designed around capabilities that become possible when AI is treated as a core interaction layer.',
+  },
+];
+---
+
+<section class="section" id="explore">
+  <div class="container">
+    <SectionHeader eyebrow="Focus areas" title="What We Explore" />
+
+    <ul class="grid">
+      {areas.map((area, index) => (
+        <li class="area card" data-reveal>
+          <span class="idx">{String(index + 1).padStart(2, '0')}</span>
+          <h3>{area.title}</h3>
+          <p class="muted">{area.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .area {
+    padding: 26px 24px 28px;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .area:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-3px);
+  }
+
+  .idx {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+  }
+
+  .area p {
+    margin: 0;
+    font-size: 0.94rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .area:hover {
+      transform: none;
+    }
+  }
+</style>

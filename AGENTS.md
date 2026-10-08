@@ -4,9 +4,46 @@ Notes for anyone (human or agent) working in this repo.
 
 ## What this is
 
-A static Astro landing page for the HackOn hackathon team. Astro renders pages
-to HTML; there is no server-side API, database, or external service, so the app
-needs **no credentials** and no infrastructure services.
+The public website for **HackOn Team** — a single-page Astro site. Astro renders
+pages to HTML; there is no server-side API, database, or external service, so the
+app needs **no credentials** and no infrastructure services.
+
+Positioning, copy rules and the official tagline are fixed by the brief: HackOn is
+an *independent builder organization*, not a startup or an AI company. Do not add
+funding, customer, user, revenue, or traction claims, and do not invent social
+accounts. Bernie Nguyen is the only public contact (`bernie@hackon.team`,
+LinkedIn `bernieweb3`).
+
+## Structure
+
+```
+src/layouts/Layout.astro        head/meta + reveal & nav scripts (inline)
+src/components/Nav.astro        sticky nav, mobile panel, active-section state
+src/components/SectionHeader.astro
+src/components/Hero.astro
+src/components/ProjectCard.astro      (media via <slot name="media">)
+src/components/AchievementCard.astro
+src/components/EcosystemCard.astro
+src/components/TeamCard.astro
+src/components/CTABlock.astro
+src/components/Footer.astro
+src/components/sections/*.astro       one file per page section
+src/pages/index.astro                 composes the sections
+src/styles/global.css                 design tokens + shared primitives
+```
+
+Section headings live in each section component; edit the data arrays at the top
+of `src/pages/index.astro`'s child components to change content.
+
+## Assets
+
+`public/brand/`, `public/team/`, `public/media/`. All source images are 1:1.
+`logo-mark.png` is the transparent symbol used for nav/hero/footer;
+`logo-full.png` (opaque, on near-black) is the OG image.
+
+Note: `public/media/aerotwin-demo.mp4` is ~51 MB. It is loaded with
+`preload="metadata"` and `controls`, so it is not fetched until the visitor
+interacts with it. Keep it out of the critical path.
 
 ## Running it in the Base44 sandbox
 
@@ -17,8 +54,8 @@ docker compose -f docker-compose.base44.yml up -d --build
 - The `web` service runs `node:22`, bind-mounts the repo at `/app`, installs
   dependencies into a named `node_modules` volume on startup, and runs
   `astro dev` with hot reload.
-- The app is served on host port **3000** (mapped from the Astro dev server,
-  which is configured to listen on `0.0.0.0:3000` in `astro.config.mjs`).
+- The app is served on host port **3000** (the Astro dev server listens on
+  `0.0.0.0:3000`, configured in `astro.config.mjs`).
 - Healthcheck hits `http://localhost:3000/` inside the container.
 
 Logs: `docker compose -f docker-compose.base44.yml logs -f web`
@@ -49,3 +86,7 @@ Frontend edits hot-reload automatically. A change to `astro.config.mjs`,
 ```bash
 docker compose -f docker-compose.base44.yml restart web
 ```
+
+Worth checking after edits: no console errors, every `[data-reveal]` block ends up
+with `is-visible`, nav `is-active` follows the section in view, and the mobile
+menu toggle (`[data-nav-toggle]`) opens/closes at <=900px.

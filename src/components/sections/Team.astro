@@ -1,0 +1,56 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import TeamCard from '../TeamCard.astro';
+
+const team = [
+  {
+    name: 'Bernie Nguyen',
+    role: 'Founder & Lead',
+    description:
+      'Leads overall direction, product development, and technical work across Agentic AI and Web3.',
+    image: '/team/bernie.png',
+    linkedin: 'https://www.linkedin.com/in/bernieweb3',
+  },
+  {
+    name: 'An Vu',
+    role: 'Co-founder & Founding Manager',
+    description: 'Operations, team development, and execution.',
+    image: '/team/an-vu.png',
+  },
+  {
+    name: 'Henry Nguyen',
+    role: 'Consultant / Advisor · External Relations',
+    description:
+      'Strategic direction, external relationships, partnerships, and external representation.',
+    image: '/team/henry.png',
+  },
+];
+---
+
+<section class="section" id="team">
+  <div class="container">
+    <SectionHeader eyebrow="People" title="Core Team" />
+
+    <div class="grid">
+      {
+        team.map((member) => (
+          <TeamCard
+            name={member.name}
+            role={member.role}
+            description={member.description}
+            image={member.image}
+            linkedin={member.linkedin}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: 22px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+</style>

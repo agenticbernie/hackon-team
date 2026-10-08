@@ -1,0 +1,110 @@
+---
+interface Props {
+  title: string;
+  body: string;
+  cycle?: string[];
+  tag?: string;
+}
+
+const { title, body, cycle, tag } = Astro.props;
+---
+
+<article class="eco card" data-reveal>
+  <div class="eco-head">
+    <h3>{title}</h3>
+    {tag && <span class="tag">{tag}</span>}
+  </div>
+
+  <p class="body muted">{body}</p>
+
+  {cycle && cycle.length > 0 && (
+    <ol class="cycle">
+      {cycle.map((step) => (
+        <li>
+          <span class="step">{step}</span>
+        </li>
+      ))}
+    </ol>
+  )}
+</article>
+
+<style>
+  .eco {
+    display: flex;
+    flex-direction: column;
+    padding: 28px 26px 30px;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .eco:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-3px);
+  }
+
+  .eco-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 4px 10px;
+    white-space: nowrap;
+  }
+
+  .body {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+
+  .cycle {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 20px 0 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .cycle li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cycle li + li::before {
+    content: "→";
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .step {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .eco:hover {
+      transform: none;
+    }
+  }
+</style>

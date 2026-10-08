@@ -1,0 +1,59 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+import EcosystemCard from '../EcosystemCard.astro';
+
+const initiatives = [
+  {
+    title: 'HackOn Team',
+    tag: 'Core',
+    body: 'Our core builder organization for products, technical experiments, and emerging research directions.',
+  },
+  {
+    title: 'HackerHome',
+    tag: 'Initiative',
+    body: 'A research and build-oriented environment where small cohorts learn, build, ship, and reflect through real technical projects.',
+    cycle: ['Learn', 'Build', 'Ship', 'Reflect'],
+  },
+  {
+    title: 'Phú Nhuận Builder',
+    tag: 'Community',
+    body: 'A startup and build-in-public community representing the builder spirit of Phú Nhuận.',
+  },
+];
+---
+
+<section class="section" id="ecosystem">
+  <div class="container">
+    <SectionHeader
+      eyebrow="Ecosystem"
+      title="Our Ecosystem"
+      intro="HackOn exists alongside builder and community initiatives — each a different way of building, sharing the same builder-first approach."
+    />
+
+    <div class="grid">
+      {
+        initiatives.map((initiative) => (
+          <EcosystemCard
+            title={initiative.title}
+            tag={initiative.tag}
+            body={initiative.body}
+            cycle={initiative.cycle}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: 20px;
+  }
+
+  @media (min-width: 900px) {
+    .grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
