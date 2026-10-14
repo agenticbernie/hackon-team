@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-zinc-950 font-sans text-zinc-400 antialiased;
+  }
+
+  ::selection {
+    @apply bg-amber-400/25 text-zinc-100;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-amber-400/70 ring-offset-2 ring-offset-zinc-950;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer utilities {
+  /* Very low-opacity technical grid. Pure CSS, no image assets. */
+  .bg-technical-grid {
+    background-image: linear-gradient(
+        to right,
+        rgb(63 63 70 / 0.4) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgb(63 63 70 / 0.4) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  /* Fades the grid out towards the edges so it reads as a glow, not a table. */
+  .mask-fade-edges {
+    -webkit-mask-image: radial-gradient(
+      ellipse 75% 70% at 50% 25%,
+      #000 35%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 75% 70% at 50% 25%,
+      #000 35%,
+      transparent 100%
+    );
+  }
+}
