@@ -149,8 +149,17 @@ function ProjectMediaBlock({
     );
   }
 
+  // A portrait screenshot (e.g. a phone UI) would tower over the landscape
+  // media on the other cards, so keep it at a phone-sized width and centre it.
+  const isPortrait = media.height > media.width;
+
   return (
-    <figure className="overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950">
+    <figure
+      className={cn(
+        "overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950",
+        isPortrait && "mx-auto w-full max-w-[320px]",
+      )}
+    >
       <Image
         src={media.src}
         alt={media.alt}

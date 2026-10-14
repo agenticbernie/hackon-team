@@ -99,11 +99,11 @@ export const projects: Project[] = [
     media: [
       {
         kind: "image",
-        src: "/images/saystrike.jpg",
-        alt: "SayStrike — Speak. Strike. Improve.",
-        width: 1080,
-        height: 1080,
-        caption: "SayStrike — Speak. Strike. Improve.",
+        src: "/images/saystrike-app.png",
+        alt: "SayStrike app — voice training system with boss battle and daily practice modes",
+        width: 351,
+        height: 643,
+        caption: "SayStrike — voice training system",
       },
     ],
   },
