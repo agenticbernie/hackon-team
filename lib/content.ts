@@ -112,10 +112,11 @@ export const projects: Project[] = [
     name: "Weap",
     subtitle: "Visual full-stack web app builder.",
     status: "concept",
-    statusLabel: "Concept / Research",
+    statusLabel: "Concept/Prototype-ready",
     description:
       "AI coding agents are becoming expensive and often bottleneck builders. Weap is a conceptual drag-and-drop environment for UI, workflows, and pipelines, enabling builders to generate and deploy full-stack applications directly to major cloud providers.",
     deployments: ["Render", "Vercel", "Netlify", "Cloudflare"],
+    repo: "https://github.com/agenticbernie/weap",
     media: [
       { kind: "placeholder", label: "Weap — interface preview pending" },
     ],
