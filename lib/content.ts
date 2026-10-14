@@ -118,7 +118,14 @@ export const projects: Project[] = [
     deployments: ["Render", "Vercel", "Netlify", "Cloudflare"],
     repo: "https://github.com/agenticbernie/weap",
     media: [
-      { kind: "placeholder", label: "Weap — interface preview pending" },
+      {
+        kind: "image",
+        src: "/images/weap-preview.png",
+        alt: "Weap workspace builder — visual CRUD workflow on the node canvas",
+        width: 1366,
+        height: 643,
+        caption: "Weap — workspace builder",
+      },
     ],
   },
   {
