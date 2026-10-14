@@ -70,3 +70,17 @@ docker compose -f docker-compose.base44.yml exec web npm run typecheck
 - No invented metrics, user counts, revenue, or funding.
 - The tagline `Ignite. Work. Ship. Repeat.` stays exact.
 - Keep the copy as provided — no generic AI marketing filler.
+
+## Deploying (Cloudflare Pages)
+
+The site is fully static (no API routes, server actions or dynamic pages), so
+Pages builds it as a static export:
+
+- `next.config.mjs` sets `output: "export"` and `images: { unoptimized: true }`.
+  Both are required: without `output: "export"` the build only writes `.next` and
+  the Pages build fails with `Output directory "out" not found`, and Next's
+  default image optimizer cannot run in a static export.
+- Pages project settings: build command `npm run build`, build output directory
+  `out`, environment variable `NODE_VERSION=22`. No `wrangler.toml` and no
+  functions directory are needed.
+- `out/` is git-ignored — build it locally only to check the export, never commit it.

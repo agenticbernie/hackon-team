@@ -16,6 +16,17 @@ const previewOrigin =
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  /**
+   * Cloudflare Pages serves this site as a static export, so `npm run build`
+   * must write the deployable site to `out/` (the Pages "build output
+   * directory"). Without `output: "export"` the build only writes `.next` and
+   * Pages fails with `Output directory "out" not found`.
+   *
+   * `next dev` ignores `output`, so the preview is unaffected; the default
+   * image optimizer has to be off because it is a server-side feature.
+   */
+  output: "export",
+  images: { unoptimized: true },
   ...(previewOrigin.length > 0 ? { allowedDevOrigins: previewOrigin } : {}),
 };
 
