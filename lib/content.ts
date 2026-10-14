@@ -84,6 +84,14 @@ export const projects: Project[] = [
         alt: "Pact screencast demo",
         caption: "Pact — screencast demo",
       },
+      {
+        kind: "image",
+        src: "/images/pact-achievement.png",
+        alt: "HackOn Team holding the Best Submission & Evidence certificate at UniHackfest 2026",
+        width: 1280,
+        height: 548,
+        caption: "Receiving Best Submission & Evidence — UniHackfest 2026",
+      },
     ],
   },
   {
